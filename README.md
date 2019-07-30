@@ -2,6 +2,8 @@
 
 This is a very basic template for streaming realtime data in [R-Shiny](https://shiny.rstudio.com/). 
 
+[Demo](http://apps.katharinabrunner.de/r-shiny-realtime-streaming-data/)
+
 It has two components: 
 
 1. Generating a data point every two seconds
@@ -14,7 +16,7 @@ It has two components:
 First, I initialize an empty dataframe as a [``reactiveValues`` object](https://shiny.rstudio.com/articles/reactivity-overview.html). It receives and stores the new data points.
 
 ```
-# initialise an empty dataframe as a reactiveValues object.
+# initialize an empty dataframe as a reactiveValues object.
 # it is going to store all upcoming new data
 
 values <- reactiveValues(df = data.frame(x = NA, y = NA))
@@ -24,11 +26,11 @@ Then, random data is saved in a `reactive values` dataframe. This `values$df` wi
 
 ```
 observeEvent(reactiveTimer(2000)(),{ # Trigger every 2 seconds
-    values$df <- isolate({
-      # get and bind the new data
+  values$df <- isolate({
+    # get and bind the new data
       values_df <- rbind(values$df, get_new_data()) %>% filter(!is.na(x))
     })
-  })
+})
 ```
 
 ## 2) Plotting the data
