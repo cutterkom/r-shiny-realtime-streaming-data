@@ -13,7 +13,7 @@ It has two components:
 
 First, I initialize an empty dataframe as a [``reactiveValues`` object](https://shiny.rstudio.com/articles/reactivity-overview.html). It receives and stores the new data points.
 
-````
+```
 # initialise an empty dataframe as a reactiveValues object.
 # it is going to store all upcoming new data
 
@@ -22,15 +22,14 @@ values <- reactiveValues(df = data.frame(x = NA, y = NA))
 
 Then, random data is saved in a `reactive values` dataframe. This `values$df` will be incrementally filled every two seconds by using [`observeEvent()`](https://shiny.rstudio.com/reference/shiny/1.0.0/observeEvent.html):
 
-````
- 
+```
 observeEvent(reactiveTimer(2000)(),{ # Trigger every 2 seconds
     values$df <- isolate({
       # get and bind the new data
       values_df <- rbind(values$df, get_new_data()) %>% filter(!is.na(x))
     })
   })
-````
+```
 
 ## 2) Plotting the data
 
