@@ -57,7 +57,7 @@ server <- shinyServer(function(input, output, session) {
     x_axis_start <-
       as.POSIXct(min(values$df$x), format = "%Y-%m-%d", origin = "1970-01-01")
     x_axis_end <-
-      as.POSIXct(min(values$df$x), format = "%Y-%m-%d", origin = "1970-01-01") + 1000
+      as.POSIXct(min(values$df$x), format = "%Y-%m-%d", origin = "1970-01-01") + 200
     y_axis_range <- c(0, 70)
     
     ggplot(data = values$df, aes(
@@ -73,7 +73,7 @@ server <- shinyServer(function(input, output, session) {
     x_axis_start <-
       as.POSIXct(min(values$df$x), format = "%Y-%m-%d", origin = "1970-01-01")
     x_axis_end <-
-      as.POSIXct(min(values$df$x), format = "%Y-%m-%d", origin = "1970-01-01") + 1000
+      as.POSIXct(min(values$df$x), format = "%Y-%m-%d", origin = "1970-01-01") + 200
     
     
     plot_ly(
@@ -97,7 +97,7 @@ server <- shinyServer(function(input, output, session) {
       data = values$df,
       x = x,
       y = y,
-      xlim = c(min(values$df$x), min(values$df$x) + 1000),
+      xlim = c(min(values$df$x), min(values$df$x) + 200),
       ylim = c(0, 70)
     )
   })
